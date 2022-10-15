@@ -1,5 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
+import { ThemeContextProvider } from "./components/context/theme-context";
+import { Box } from "./components/context/box";
+import { UserContextProvider } from "./components/context/user-context";
+import { UserForContext } from "./components/context/user-for-context";
 import './App.css';
 import {Greetings} from './components/greetings';
 import {Person} from './components/person';
@@ -35,6 +38,12 @@ function App() {
 
     return (
         <div className="App">
+            <ThemeContextProvider>
+                <Box />
+            </ThemeContextProvider>
+            <UserContextProvider>
+                <UserForContext />
+            </UserContextProvider>
             <Status status='loading'/>
             <Heading>Placeholder text</Heading>
             <Oscar>

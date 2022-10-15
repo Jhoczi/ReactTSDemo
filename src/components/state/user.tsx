@@ -7,7 +7,9 @@ type AuthUser = {
 
 export const User = () => {
 
-    const [user, setUser] = useState<AuthUser | null>(null);
+    // \const [user, setUser] = useState<AuthUser | null>(null); with ? operator
+    const [user, setUser] = useState<AuthUser>({} as AuthUser); // without ??
+    // -> we are lying that empty object is always AuthUser (TYPE ASSERTION)
 
     const handleLogin = () => {
         setUser({
@@ -15,14 +17,15 @@ export const User = () => {
             email: "jakub@gmail.com"
         });
     };
-    const handleLogout = () => {
-        setUser(null);
-    };
+    // Only for ? operator
+    // const handleLogout = () => {
+    //     setUser(null);
+    // };
 
     return (
         <div>
             <button onClick={handleLogin}>Login</button>
-            <button onClick={handleLogout}>Logout</button>
+            {/*<button onClick={handleLogout}>Logout</button>*/}
             <div>User name is {user?.name}</div>
             <div>User email is {user?.email}</div>
         </div>
